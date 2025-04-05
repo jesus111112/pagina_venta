@@ -1,0 +1,27 @@
+h1 {color:skyblue;
+    font-size:20px;
+    font-family:Courier;
+    font-weight:bold;
+    font-style:italic;
+    line-height:30px;
+    letter-spacing:5px;
+    text-transform:capitalize;
+    text-align:left;
+    text-indent:30px;
+    }
+
+    p {color:skyblue;
+        font-size:20px;
+        font-family:Courier;
+        font-weight:bold;
+        font-style:italic;
+        line-height:30px;
+        letter-spacing:5px;
+        text-transform:capitalize;
+        text-align:left;
+        text-indent:30px;
+        }
+    
+    table.separado {border-collapse: separado;}
+    
+    table.colapsado {border-collapse: colapsado;}

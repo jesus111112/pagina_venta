@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="dese10.css">
+    <link rel="stylesheet" href="titulos.css">
+    <link rel="icon" type="image/png" href="mi_logo.webp">
+    <title>Tienda Virtual  de objetos de categora especialEspecial</title>
+    <style>
+    /* Variables de colores */
+    :root {
+        --carbon-bg: #121212;
+        --blue-stripes: #0047AB;
+        --blue-rays: #00BFFF;
+        --electric-blue: #1E90FF;
+        --ray-glow: 0 0 10px var(--blue-rays);
+    
+      }
+  
+      /* Estilo general del cuerpo */
+      body {
+        background-color: var(--carbon-bg);
+        background-image: 
+          linear-gradient(45deg, 
+            rgba(30, 30, 30, 0.5) 25%, 
+            transparent 25%, 
+            transparent 50%, 
+            rgba(30, 30, 30, 0.5) 50%, 
+            rgba(30, 30, 30, 0.5) 75%, 
+            transparent 75%, 
+            transparent);
+        background-size: 10px 10px;
+        color: white;
+        font-family: 'Arial', sans-serif;
+        margin: 0;
+        padding: 0;
+        overflow-x: hidden;
+        min-height: 100vh;
+        position: relative;
+      }
+  
+      /* Contenedor principal */
+      .container {
+        width: 100%;
+        max-width: 1200px;
+        margin: 0 auto;
+        position: relative;
+      }
+  
+      /* Rayas azules horizontales */
+      .blue-stripes {
+        background: linear-gradient(to right,
+          transparent 0%,
+          transparent 45%, 
+          var(--blue-stripes) 45%,
+          var(--blue-stripes) 47%,
+          transparent 47%,
+          transparent 100%);
+        height: 2px;
+        width: 100%;
+        margin: 50px 0;
+        position: relative;
+      }
+  
+      /* Rayos brillantes */
+      .blue-ray {
+        position: absolute;
+        width: 3px;
+        height: 150px; /* Increased height for higher rays */
+        background-color: var(--blue-rays);
+        box-shadow: var(--ray-glow);
+        transform: rotate(45deg);
+        transform-origin: bottom;
+        animation: ray-pulse 3s infinite alternate;
+      }
+  
+      /* Posiciones de los rayos */
+      .ray-1 { left: 20%; top: 5%; height: 200px; } /* Adjusted positions and heights */
+      .ray-2 { left: 40%; top: 15%; height: 250px; }
+      .ray-3 { left: 70%; top: 8%; height: 220px; }
+      .ray-4 { left: 85%; top: 12%; height: 180px; }
+      .ray-5 { left: 50%; top: 10%; height: 230px; }
+  
+      /* Animación de pulso para los rayos */
+      @keyframes ray-pulse {
+        0% { opacity: 0.3; height: 150px; } /* Increased base height */
+        50% { opacity: 0.8; height: 250px; } /* Increased max height */
+        100% { opacity: 0.3; height: 150px; }
+      }
+  
+      /* Rayos de tormenta desde la parte inferior */
+      .storm-container {
+        position: absolute;
+        bottom: 0; /* Position at the very bottom */
+        left: 0;
+        width: 100%;
+        height: 350px; /* Increased height for higher lightning */
+        overflow: hidden;
+        z-index: 1;
+        pointer-events: none;
+      }
+  
+      .lightning {
+        position: absolute;
+        bottom: 0; /* Start from the bottom */
+        background-color: var(--electric-blue);
+        box-shadow: 0 0 10px var(--blue-rays), 0 0 20px var(--blue-rays);
+        opacity: 0;
+        animation: flash 6s infinite;
+        filter: blur(1px);
+      }
+  
+      /* Generamos diferentes rayos con mayor altura */
+      .lightning-1 {
+        left: 10%;
+        height: 220px; /* Significantly increased heights */
+        width: 3px;
+        animation-delay: 0.2s;
+        transform: rotate(15deg);
+      }
+  
+      .lightning-2 {
+        left: 25%;
+        height: 240px;
+        width: 2px;
+        animation-delay: 2.5s;
+        transform: rotate(-10deg);
+      }
+  
+      .lightning-3 {
+        left: 40%;
+        height: 260px;
+        width: 3px;
+        animation-delay: 1.3s;
+        transform: rotate(7deg);
+      }
+  
+      .lightning-4 {
+        left: 60%;
+        height: 230px;
+        width: 2px;
+        animation-delay: 3.1s;
+        transform: rotate(-12deg);
+      }
+  
+      .lightning-5 {
+        left: 75%;
+        height: 250px;
+        width: 3px;
+        animation-delay: 0.7s;
+        transform: rotate(9deg);
+      }
+  
+      .lightning-6 {
+        left: 90%;
+        height: 235px;
+        width: 2px;
+        animation-delay: 4.2s;
+        transform: rotate(-5deg);
+      }
+  
+      /* Ramas de los rayos */
+      .lightning::before, .lightning::after {
+        content: '';
+        position: absolute;
+        background-color: var(--electric-blue);
+        box-shadow: 0 0 7px var(--blue-rays);
+      }
+  
+      .lightning::before {
+        width: 2px;
+        height: 40px; /* Increased height */
+        top: 30%;
+        left: -15px;
+        transform: rotate(-40deg);
+      }
+  
+      .lightning::after {
+        width: 2px;
+        height: 35px; /* Increased height */
+        top: 60%;
+        left: 8px;
+        transform: rotate(30deg);
+      }
+  
+      /* Animación del destello de los rayos */
+      @keyframes flash {
+        0%, 100% {
+          opacity: 0;
+        }
+        0.5%, 1.5% {
+          opacity: 0.8;
+        }
+        0.7%, 1.1% {
+          opacity: 0.4;
+        }
+        0.9% {
+          opacity: 0.9;
+        }
+      }
+  
+      /* Efecto de nubes tormentosas debajo de los rayos */
+      .storm-clouds {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 100px; /* Increased height */
+        background: linear-gradient(0deg, 
+          rgba(0, 0, 0, 0.8) 0%,
+          rgba(0, 10, 30, 0.5) 40%,
+          rgba(0, 10, 30, 0.2) 80%,
+          transparent 100%);
+        z-index: 0;
+      }
+  
+      /* Efecto de brillo para botones */
+      .glow-button {
+        background-color: var(--carbon-bg);
+        color: var(--blue-rays);
+        border: 1px solid var(--blue-stripes);
+        padding: 10px 20px;
+        border-radius: 5px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        position: relative;
+        overflow: hidden;
+        z-index: 1;
+        transition: all 0.3s ease;
+      }
+  
+      .glow-button:before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(to right, transparent, var(--blue-rays), transparent);
+        transition: all 0.5s ease;
+        z-index: -1;
+      }
+  
+      .glow-button:hover {
+        color: white;
+        box-shadow: 0 0 15px var(--blue-rays);
+      }
+  
+      .glow-button:hover:before {
+        left: 100%;
+      }
+  
+      /* Contenido principal con espacio para los rayos */
+      .main-content {
+        position: relative;
+        z-index: 2;
+        padding-bottom: 80px;
+      }
+  
+      .logo-container {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        z-index: 10;
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        overflow: hidden;
+        border: 2px solid var(--blue-stripes);
+        box-shadow: 0 0 15px var(--blue-rays);
+        transition: all 0.3s ease;
+      }
+  
+      .logo-container:hover {
+        box-shadow: 0 0 25px var(--blue-rays), 0 0 35px var(--blue-rays);
+        transform: scale(1.05);
+      }
+  
+      .logo-container img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: all 0.3s ease;
+      }
+  
+      .logo-container::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(to right, transparent, var(--blue-rays), transparent);
+        animation: shine 3s infinite;
+        z-index: 1;
+      }
+  
+      @keyframes shine {
+        0% { left: -100%; }
+        20% { left: 100%; }
+        100% { left: 100%; }
+      }
+      .logo-Facebook {
+        position: fixed;
+        top: 200px;
+        right: 10px;
+        z-index: 9;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        overflow: hidden;
+        border: 2px solid var(--blue-stripes);
+        box-shadow: 0 0 15px var(--blue-rays);
+        transition: all 0.3s ease;
+      }
+  
+      .logo-Facebook:hover {
+        box-shadow: 0 0 25px var(--blue-rays), 0 0 35px var(--blue-rays);
+        transform: scale(1.05);
+      }
+  
+      .logo-Facebook img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: all 0.3s ease;
+      }
+  
+      .logo-Facebook::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(to right, transparent, var(--blue-rays), transparent);
+        animation: shine 3s infinite;
+        z-index: 1;
+      }
+      .logo-Instagram {
+        position: fixed;
+        top: 260px;
+        right: 10px;
+        z-index: 9;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        overflow: hidden;
+        border: 2px solid var(--blue-stripes);
+        box-shadow: 0 0 15px var(--blue-rays);
+        transition: all 0.3s ease;
+      }
+  
+      .logo-Instagram:hover {
+        box-shadow: 0 0 25px var(--blue-rays), 0 0 35px var(--blue-rays);
+        transform: scale(1.05);
+      }
+  
+      .logo-Instagram img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: all 0.3s ease;
+      }
+  
+      .logo-Instagram::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(to right, transparent, var(--blue-rays), transparent);
+        animation: shine 3s infinite;
+        z-index: 1;
+      }
+      .logo-X {
+        position: fixed;
+        top: 320px;
+        right: 10px;
+        z-index: 9;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        overflow: hidden;
+        border: 2px solid var(--blue-stripes);
+        box-shadow: 0 0 15px var(--blue-rays);
+        transition: all 0.3s ease;
+      }
+  
+      .logo-X:hover {
+        box-shadow: 0 0 25px var(--blue-rays), 0 0 35px var(--blue-rays);
+        transform: scale(1.05);
+      }
+  
+      .logo-X img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: all 0.3s ease;
+      }
+  
+      .logo-X::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(to right, transparent, var(--blue-rays), transparent);
+        animation: shine 3s infinite;
+        z-index: 1;
+      }
+
+        /* Estilos adicionales para la tienda */
+        .product-grid {
+            display: none;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            padding: 20px;
+            margin-top: 20px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .product-card {
+            background: rgba(18, 18, 18, 0.8);
+            border: 1px solid var(--blue-stripes);
+            border-radius: 10px;
+            padding: 15px;
+            text-align: center;
+            backdrop-filter: blur(5px);
+            transition: transform 0.3s, box-shadow 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 15px var(--blue-rays);
+        }
+
+        .product-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to right, transparent, var(--blue-rays), transparent);
+            transition: all 0.5s ease;
+            z-index: 0;
+        }
+
+        .product-card:hover::before {
+            left: 100%;
+        }
+
+        .product-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 8px;
+            border: 1px solid var(--blue-stripes);
+        }
+
+        .product-title {
+            color: var(--blue-rays);
+            margin: 15px 0;
+            font-size: 1.2em;
+            position: relative;
+        }
+
+        .product-price {
+            color: var(--electric-blue);
+            font-size: 1.3em;
+            margin: 10px 0;
+            text-shadow: 0 0 5px var(--blue-rays);
+        }
+
+        .category-menu {
+            display: none;
+            text-align: center;
+            margin: 20px 0;
+            position: relative;
+            z-index: 2;
+        }
+
+        .category-button {
+            background: var(--carbon-bg);
+            color: var(--blue-rays);
+            border: 1px solid var(--blue-stripes);
+            padding: 10px 20px;
+            margin: 0 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .category-button:hover {
+            color: white;
+            box-shadow: 0 0 15px var(--blue-rays);
+        }
+
+        .buy-button {
+            position: relative;
+            background: var(--carbon-bg);
+            color: var(--blue-rays);
+            border: 1px solid var(--blue-stripes);
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            margin-top: 10px;
+        }
+
+        .buy-button:hover {
+            color: white;
+            box-shadow: 0 0 15px var(--blue-rays);
+        }
+
+        .active {
+            display: block;
+        }
+        .imagen-izquierda {
+          position: fixed;
+          bottom: 20px;
+          left: 20px;
+          z-index: 10;
+          width: 100px; /* ajusta según necesites */
+          height: 100px; /* ajusta según necesites */
+        }
+
+        .imagen-derecha {
+          position: fixed;
+          bottom: 20px;
+          right: 20px;
+          z-index: 10;
+          width: 100px; /* ajusta según necesites */
+          height: 100px; /* ajusta según necesites */
+        }
+        /* Estilos para el overlay de registro */
+        .register-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 100;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .register-form {
+            background-color: var(--carbon-bg);
+            border: 2px solid var(--blue-stripes);
+            border-radius: 10px;
+            padding: 30px;
+            width: 350px;
+            max-width: 90%;
+            box-shadow: 0 0 20px var(--blue-rays);
+            position: relative;
+            animation: formGlow 2s infinite alternate;
+        }
+
+        @keyframes formGlow {
+            0% { box-shadow: 0 0 15px var(--blue-rays); }
+            100% { box-shadow: 0 0 25px var(--blue-rays), 0 0 35px var(--blue-rays); }
+        }
+
+        .register-form h2 {
+            color: var(--blue-rays);
+            text-align: center;
+            margin-bottom: 20px;
+            text-shadow: 0 0 5px var(--blue-rays);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            color: var(--electric-blue);
+            margin-bottom: 5px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            background-color: rgba(18, 18, 18, 0.8);
+            border: 1px solid var(--blue-stripes);
+            border-radius: 5px;
+            color: white;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus {
+            border-color: var(--blue-rays);
+            box-shadow: 0 0 10px var(--blue-rays);
+        }
+
+        .form-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 25px;
+        }
+
+        .cancel-button {
+            background-color: rgba(50, 50, 50, 0.8);
+        }
+        audio {
+            width: 300px; /* Ajusta el tamaño del reproductor */
+            opacity: 0.7; /* Hace que sea semitransparente */
+            background-color: rgba(0, 0, 0, 0.5); /* Fondo negro semitransparente */
+            border-radius: 10px; /* Bordes redondeados */
+            padding: 5px; /* Espaciado interno */
+            backdrop-filter: blur(5px); /* Difuminado de fondo para mejor estética */
+        }
+
+        /* Estilo para ocultar los controles predeterminados en algunos navegadores */
+        audio::-webkit-media-controls-panel {
+            background-color: rgba(4, 35, 102, 0.3) !important; /* Fondo semitransparente en controles */
+            border-radius: 10px;
+        }
+
+    </style>
+</head>
+<body>
+    
+    <img src="gojo2.jpg" alt="Imagen izquierda" class="imagen-izquierda">
+    <img src="sukuna2.jpg" alt="Imagen derecha" class="imagen-derecha">
+    <audio controls autoplay loop>
+      <source src="para_mi_pagina.mp3" type="audio/mpeg">
+    </audio>
+    <!-- Los rayos de tormenta desde la línea inferior -->
+    <div class="storm-container">
+        <div class="lightning lightning-1"></div>
+        <div class="lightning lightning-2"></div>
+        <div class="lightning lightning-3"></div>
+        <div class="lightning lightning-4"></div>
+        <div class="lightning lightning-5"></div>
+        <div class="lightning lightning-6"></div>
+        <div class="storm-clouds"></div>
+    </div>
+
+    <div class="main-content">
+        <div class="container">
+            <div class="blue-stripes"></div>
+            
+            <div class="blue-ray ray-1"></div>
+            <div class="blue-ray ray-2"></div>
+            <div class="blue-ray ray-3"></div>
+            <div class="blue-ray ray-4"></div>
+            <div class="blue-ray ray-5"></div>
+            
+            <h1>Tienda Virtual de Objetos de categoria Especiales</h1>
+            <p>Descubre nuestra colección única de objetos extraordinarios</p>
+            
+            <button class="glow-button" onclick="mostrarMenu()">Ver Productos</button>
+
+            <div class="category-menu" id="categoryMenu">
+              <button class="category-button" onclick="filtrarItems('todos')">Todos</button>
+              <button class="category-button" onclick="filtrarItems('juegos')">juegos</button>
+              <button class="category-button" onclick="filtrarItems('mangas')">mangas</button>
+              <button class="category-button" onclick="filtrarItems('coleccionables')">coleccionables</button>
+              <!-- Agrega más categorías según necesites -->
+          </div>
+          <br>
+          <br>
+          <div>
+            <button class="category-button" onclick="redirigir()">
+              historia de la pagina
+          </button>
+          
+          <script>
+          function redirigir() {
+              window.location.href = 'descripcion.html';
+          }
+          </script>
+          </div>
+
+            <div class="product-grid" id="productGrid">
+                <!-- Productos generados dinámicamente -->
+            </div>
+
+            <div class="blue-stripes"></div>
+        </div>
+    </div>
+
+    <div class="logo-container">
+        <img src="C:\Users\GAMER RYSEN\Desktop\proyecto/mi_logo.webp" alt="Logo">
+    </div>
+    <div class="logo-Facebook">
+      <a href="https://es-la.facebook.com/" target="_blank">
+        <img src="fece.png" alt="Descripción de la imagen" width="200">
+      </a>    
+    </div>
+    <div class="logo-Instagram">
+      <a href="https://www.instagram.com/fenix.virtualgame/" target="_blank">
+        <img src="insta.jpeg" alt="Descripción de la imagen" width="200">
+      </a>
+    </div>
+    <div class="logo-X">
+      <a href="https://x.com/fenix_game111" target="_blank">
+        <img src="x.jpeg" alt="Descripción de la imagen" width="200">
+      </a>
+    </div>
+    <script>
+        const imper_vinculos = [
+        {
+            id: 1,
+            nombre: "juegos",
+            url: "file:///C:/Users/GAMER%20RYSEN/Desktop/proyecto/juegos/juegos.html",
+            descripcion: "puedes ver los mejores juegos del los articulos",
+            categoria: "juegos",
+            imagen: "portada_de_juegos.png"
+        },
+        {
+            id: 2,
+            nombre: "mangas",
+            url: "file:///C:/Users/GAMER%20RYSEN/Desktop/proyecto/manga/mangas.html", 
+            descripcion: "Encuentra los mejores mangas y comics",
+            categoria: "mangas",
+            imagen: "portada_de_mangas.png"
+        },
+        {
+            id: 3,
+            nombre: "coleccionables",
+            url: "file:///C:/Users/GAMER%20RYSEN/Desktop/proyecto/objetos/categoria_especial.html",
+            descripcion: "Artículos coleccionables únicos y especiales",
+            categoria: "coleccionables",
+            imagen: "portada_de_objetos.png"
+        }
+    ];
+
+    function mostrarMenu() {
+        document.getElementById('categoryMenu').style.display = 'block';
+        document.getElementById('productGrid').style.display = 'grid';
+        mostrarItems(imper_vinculos);
+    }
+
+    function mostrarItems(items_amostrar) {
+        const grid = document.getElementById('productGrid');
+        grid.innerHTML = '';
+        
+        items_amostrar.forEach(item => {
+            const card = document.createElement('div');
+            card.className = 'product-card';
+            card.innerHTML = `
+                <a href="${item.url}" style="text-decoration: none; color: inherit;">
+                    <img src="${item.imagen}" alt="${item.nombre}" class="product-image">
+                    <h3 class="product-title">${item.nombre}</h3>
+                    <p class="product-description" style="color: #666; font-size: 0.9em; margin: 10px 0;">
+                        ${item.descripcion || 'Sin descripción disponible'}
+                    </p>
+                    <div class="buy-button">Visitar</div>
+                </a>
+            `;
+            grid.appendChild(card);
+        });
+    }
+
+    function filtrarItems(categoria) {
+        let itemsFiltrados;
+        if (categoria === 'todos') {
+            itemsFiltrados = imper_vinculos;
+        } else {
+            itemsFiltrados = imper_vinculos.filter(item => item.categoria === categoria);
+        }
+        mostrarItems(itemsFiltrados);
+    }
+    function mostrarMenu() {
+    document.getElementById('categoryMenu').style.display = 'block';
+    document.getElementById('productGrid').style.display = 'grid';
+    mostrarItems(imper_vinculos);
+    }
+
+    </script>
+</body>
+</html>

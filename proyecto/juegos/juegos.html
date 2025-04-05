@@ -1,0 +1,933 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="decoracion_principal.css">
+    <link rel="stylesheet" href="dese10.css">
+    <link rel="stylesheet" href="titulos.css">
+    <link rel="icon" type="image/png" href="mi_logo.webp">
+    <title>venta de juegos</title>
+    <style>
+        .register-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 100;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .register-form {
+            background-color: #121212; /* o var(--carbon-bg) si ya tienes esta variable */
+            border: 2px solid #0047AB; /* o var(--blue-stripes) */
+            border-radius: 10px;
+            padding: 30px;
+            width: 350px;
+            max-width: 90%;
+            box-shadow: 0 0 20px #00BFFF; /* o var(--blue-rays) */
+            position: relative;
+            animation: formGlow 2s infinite alternate;
+        }
+
+        @keyframes formGlow {
+            0% { box-shadow: 0 0 15px #00BFFF; } /* o var(--blue-rays) */
+            100% { box-shadow: 0 0 25px #00BFFF, 0 0 35px #00BFFF; } /* o var(--blue-rays) */
+        }
+
+        .register-form h2 {
+            color: #00BFFF; /* o var(--blue-rays) */
+            text-align: center;
+            margin-bottom: 20px;
+            text-shadow: 0 0 5px #00BFFF; /* o var(--blue-rays) */
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            color: #00BFFF; /* o var(--electric-blue) */
+            margin-bottom: 5px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            background-color: rgba(18, 18, 18, 0.8);
+            border: 1px solid #0047AB; /* o var(--blue-stripes) */
+            border-radius: 5px;
+            color: white;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus {
+            border-color: #00BFFF; /* o var(--blue-rays) */
+            box-shadow: 0 0 10px #00BFFF; /* o var(--blue-rays) */
+        }
+
+        .form-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 25px;
+        }
+
+        .cancel-button {
+            background-color: rgba(50, 50, 50, 0.8);
+        }
+
+        /* Estilo para las pestañas */
+        .form-tabs {
+            display: flex;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #0047AB; /* o var(--blue-stripes) */
+        }
+
+        .tab {
+            padding: 10px 20px;
+            cursor: pointer;
+            color: #00BFFF; /* o var(--electric-blue) */
+            transition: all 0.3s ease;
+        }
+
+        .tab.active {
+            border-bottom: 2px solid #00BFFF; /* o var(--blue-rays) */
+            color: white;
+            text-shadow: 0 0 5px #00BFFF; /* o var(--blue-rays) */
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="logo-container">
+        <img src="mi_logo.webp" alt="Logo">
+    </div>
+    <div>
+        <button class="category-button" onclick="redirigir()">
+        atras
+      </button>
+      
+      <script>
+      function redirigir() {
+          window.location.href = 'file:///C:/Users/GAMER%20RYSEN/Desktop/proyecto/index.html';
+      }
+      </script>
+      </div>
+        <!-- Los rayos de tormenta desde la línea inferior -->
+        <div class="storm-container">
+            <div class="lightning lightning-1"></div>
+            <div class="lightning lightning-2"></div>
+            <div class="lightning lightning-3"></div>
+            <div class="lightning lightning-4"></div>
+            <div class="lightning lightning-5"></div>
+            <div class="lightning lightning-6"></div>
+            <div class="storm-clouds"></div>
+        </div>
+    
+        <div class="main-content">
+            <div class="container">
+                <div class="blue-stripes"></div>
+                
+                <div class="blue-ray ray-1"></div>
+                <div class="blue-ray ray-2"></div>
+                <div class="blue-ray ray-3"></div>
+                <div class="blue-ray ray-4"></div>
+                <div class="blue-ray ray-5"></div>
+            </div>
+        </div>
+        <h1>juegos</h1>
+        <div class="category-menu" id="categoryMenu">
+            <button class="category-button" onclick="filtrarItems('todos')">Todos</button>
+            <button class="category-button" onclick="filtrarItems('raros')">Objetos raros</button>
+            <button class="category-button" onclick="filtrarItems('misticos')">Objetos místicos</button>
+            <button class="category-button" onclick="filtrarItems('legendarios')">Legendarios</button>
+            <button class="category-button" onclick="filtrarItems('categora_especial')">categoria especial</button>
+            <br>
+            <button class="category-button" onclick="filtrarItems('ps5')">ps5</button>
+            <button class="category-button" onclick="filtrarItems('ps4')">ps4</button>
+            <button class="category-button" onclick="filtrarItems('xbox_360')">xbox 360</button>
+            <button class="category-button" onclick="filtrarItems('xbox')">xbox clasico</button>
+            <br>
+                <button class="category-button" onclick="filtrarItems('wii_u')">nintendo wii u</button>
+                <button class="category-button" onclick="filtrarItems('wii')">nintendo wii</button>
+                <button class="category-button" onclick="filtrarItems('n64')">nintendo 64</button>
+                <button class="category-button" onclick="filtrarItems('ds')">nintendo ds</button>
+                <br>
+                <button class="category-button" onclick="filtrarItems('pc')">pc</button>
+                <button class="category-button" onclick="filtrarItems('psp')">psp</button>
+                <button class="category-button" onclick="filtrarItems('ps_vita')">ps vita</button>
+                <button class="category-button" onclick="filtrarItems('gba')">gba</button>
+            <br>
+        </div>
+        
+    
+        <div class="product-grid" id="productGrid">
+            <!-- Productos generados dinámicamente -->
+        </div>
+    
+        <div class="blue-stripes"></div>
+        
+        <script>
+            const venta = [
+                {
+                    id: 1,
+                    nombre: "returnal",
+                    precio: 299.99,
+                    descripcion: "Videojuego de disparos en tercera persona roguelike con acción intensa y una narrativa envolvente.",
+                    categoria_raresa: "raros",
+                    categoria: "ps5",
+                    imagen: "returnal.png",
+                    stock: 15,
+                    rating: 4.5,
+                    envioGratis: true
+                },
+                {
+                    id: 2,
+                    nombre: "Mortal Kombat X",
+                    precio: 159.99,
+                    descripcion: "Juego de lucha con los personajes icónicos de Mortal Kombat y un sistema de combate mejorado.",
+                    categoria: "ps4",
+                    imagen: "mortalkombat.png",
+                    stock: 8,
+                    rating: 4.8,
+                    envioGratis: true
+                },
+                {
+                    id: 3,
+                    nombre: "Horizon Zero Dawn",
+                    precio: 299.99,
+                    descripcion: "Aventura en un mundo abierto postapocalíptico con combates contra máquinas gigantes.",
+                    categoria: "ps4",
+                    imagen: "horizon.png",
+                    stock: 5,
+                    rating: 4.9,
+                    envioGratis: true
+                },
+                {
+                    id: 4,
+                    nombre: "Killzone Shadow Fall",
+                    precio: 199.99,
+                    descripcion: "Shooter en primera persona con intensas batallas en un futuro distópico.",
+                    categoria: "ps4",
+                    imagen: "killzone.png",
+                    stock: 6,
+                    rating: 4.5,
+                    envioGratis: false
+                },
+                {
+                    id: 5,
+                    nombre: "Knack",
+                    precio: 129.99,
+                    descripcion: "Juego de plataformas con un personaje que cambia de tamaño para resolver desafíos.",
+                    categoria: "ps4",
+                    imagen: "knak.png",
+                    stock: 10,
+                    rating: 4.2,
+                    envioGratis: true
+                },
+                {
+                    id: 6,
+                    nombre: "Far Cry 4",
+                    precio: 249.99,
+                    descripcion: "Acción y supervivencia en el Himalaya con un mundo abierto lleno de peligros.",
+                    categoria: "ps4",
+                    imagen: "farcry4.png",
+                    stock: 4,
+                    rating: 4.7,
+                    envioGratis: false
+                },
+                {
+                    id: 7,
+                    nombre: "Far Cry 5",
+                    precio: 279.99,
+                    descripcion: "Lucha contra una secta fanática en un vasto mundo abierto en EE.UU.",
+                    categoria: "ps4",
+                    imagen: "farcry5.png",
+                    stock: 3,
+                    rating: 4.8,
+                    envioGratis: true
+                },
+                {
+                    id: 8,
+                    nombre: "Uncharted: The Nathan Drake Collection",
+                    precio: 199.99,
+                    descripcion: "Colección remasterizada de las aventuras de Nathan Drake en PlayStation 4.",
+                    categoria: "ps4",
+                    imagen: "unchart.png",
+                    stock: 7,
+                    rating: 4.9,
+                    envioGratis: true
+                },
+                {
+                    id: 9,
+                    nombre: "Minecraft",
+                    precio: 189.99,
+                    descripcion: "Explora, construye y sobrevive en este icónico juego de mundo abierto.",
+                    categoria: "ps4",
+                    imagen: "minecraft_ps4.png",
+                    stock: 15,
+                    rating: 4.9,
+                    envioGratis: false
+                },
+                {
+                    id: 10,
+                    nombre: "FIFA 18",
+                    precio: 159.99,
+                    descripcion: "Juego de fútbol con gráficos realistas y modos de juego mejorados.",
+                    categoria: "ps4",
+                    imagen: "fifa18.png",
+                    stock: 12,
+                    rating: 4.6,
+                    envioGratis: false
+                },
+                {
+                    id: 11,
+                    nombre: "dimensiones",
+                    precio: 159.99,
+                    descripcion: "Juego de fútbol con gráficos realistas y modos de juego mejorados.",
+                    categoria: "wii_u",
+                    imagen: "dime.png",
+                    stock: 12,
+                    rating: 4.6,
+                    envioGratis: false
+                },
+                {
+                    id: 12,
+                    nombre: "Battle for the Pacific",
+                    precio: 129.99,
+                    descripcion: "Shooter basado en la Segunda Guerra Mundial con intensos combates en el Pacífico.",
+                    categoria: "wii",
+                    imagen: "battle.png",
+                    stock: 6,
+                    rating: 4.1,
+                    envioGratis: false
+                },
+                {
+                    id: 13,
+                    nombre: "Mario & Sonic at the Olympic Winter Games",
+                    precio: 199.99,
+                    descripcion: "Juego de deportes basado en los Juegos Olímpicos de Invierno con personajes de Mario y Sonic.",
+                    categoria: "wii",
+                    imagen: "olympic.png",
+                    stock: 8,
+                    rating: 4.5,
+                    envioGratis: true
+                },
+                {
+                    id: 14,
+                    nombre: "Super Smash Bros. Brawl",
+                    precio: 249.99,
+                    descripcion: "Lucha con personajes de Nintendo en este icónico juego de combate.",
+                    categoria: "wii",
+                    imagen: "smash.png",
+                    stock: 4,
+                    rating: 4.9,
+                    envioGratis: true
+                },
+                {
+                    id: 15,
+                    nombre: "Wii Sports",
+                    precio: 179.99,
+                    descripcion: "Colección de minijuegos deportivos que aprovechan los controles de movimiento de la Wii.",
+                    categoria: "wii",
+                    imagen: "wiisports.png",
+                    stock: 10,
+                    rating: 4.8,
+                    envioGratis: false
+                },
+                {
+                    id: 16,
+                    nombre: "Call of Duty: Black Ops",
+                    precio: 219.99,
+                    descripcion: "Shooter en primera persona con una intensa campaña y multijugador competitivo.",
+                    categoria: "wii",
+                    imagen: "black_ops.png",
+                    stock: 5,
+                    rating: 4.7,
+                    envioGratis: false
+                },
+                {
+                    id: 17,
+                    nombre: "Red Dead Redemption",
+                    precio: 299.99,
+                    descripcion: "Aventura de mundo abierto en el Salvaje Oeste con una historia épica y un vasto mapa por explorar.",
+                    categoria: "xbox_360",
+                    imagen: "red.png",
+                    stock: 7,
+                    rating: 4.9,
+                    envioGratis: true
+                },
+                {
+                    id: 18,
+                    nombre: "Call of Duty: Black Ops Collection",
+                    precio: 349.99,
+                    descripcion: "Colección de los juegos Black Ops con intensas campañas y un multijugador icónico.",
+                    categoria: "xbox_360",
+                    imagen: "black_ops_xbox.png",
+                    stock: 5,
+                    rating: 4.8,
+                    envioGratis: true
+                },
+                {
+                    id: 19,
+                    nombre: "Minecraft",
+                    precio: 189.99,
+                    descripcion: "Juego de construcción y supervivencia donde puedes crear y explorar mundos infinitos.",
+                    categoria: "xbox_360",
+                    imagen: "minecrft_xbox360.png",
+                    stock: 12,
+                    rating: 4.9,
+                    envioGratis: false
+                },
+                {
+                    id: 20,
+                    nombre: "Far Cry Evolution",
+                    precio: 179.99,
+                    descripcion: "Shooter en primera persona con acción intensa y un mundo abierto lleno de peligros.",
+                    categoria: "xbox",
+                    imagen: "farcry.png",
+                    stock: 6,
+                    rating: 4.5,
+                    envioGratis: false
+                },
+                {
+                    id: 21,
+                    nombre: "MRC: Multi Racing Championship",
+                    precio: 149.99,
+                    descripcion: "Juego de carreras con múltiples rutas y diferentes tipos de vehículos para desafiar terrenos variados.",
+                    categoria: "n64",
+                    imagen: "mrc.png",
+                    stock: 5,
+                    rating: 4.2,
+                    envioGratis: false
+                },
+                {
+                    id: 22,
+                    nombre: "South Park",
+                    precio: 169.99,
+                    descripcion: "Shooter en primera persona basado en la serie animada, con acción y humor característico.",
+                    categoria: "n64",
+                    imagen: "south.png",
+                    stock: 4,
+                    rating: 4.0,
+                    envioGratis: false
+                },
+                {
+                    id: 23,
+                    nombre: "F1 Pole Position 64",
+                    precio: 159.99,
+                    descripcion: "Juego de carreras de Fórmula 1 con licencias oficiales y una jugabilidad desafiante.",
+                    categoria: "n64",
+                    imagen: "f1.png",
+                    stock: 6,
+                    rating: 4.3,
+                    envioGratis: false
+                },
+                {
+                    id: 24,
+                    nombre: "Call of Duty 2",
+                    precio: 199.99,
+                    descripcion: "Shooter en primera persona ambientado en la Segunda Guerra Mundial con intensas batallas y realismo histórico.",
+                    categoria: "pc",
+                    imagen: "callofduty2.png",
+                    stock: 7,
+                    rating: 4.7,
+                    envioGratis: true
+                },
+                {
+                    id: 25,
+                    nombre: "The Witcher 2: Assassins of Kings",
+                    precio: 249.99,
+                    descripcion: "RPG de acción con una historia profunda y decisiones que afectan el destino del mundo.",
+                    categoria: "pc",
+                    imagen: "the.png",
+                    stock: 5,
+                    rating: 4.8,
+                    envioGratis: true
+                },
+                {
+                    id: 26,
+                    nombre: "Learn Math",
+                    precio: 99.99,
+                    descripcion: "Juego educativo diseñado para mejorar las habilidades matemáticas de una manera divertida e interactiva.",
+                    categoria: "ds",
+                    imagen: "math.png",
+                    stock: 10,
+                    rating: 4.0,
+                    envioGratis: false
+                },
+                {
+                    id: 27,
+                    nombre: "New Super Mario Bros.",
+                    precio: 249.99,
+                    descripcion: "Clásico juego de plataformas donde Mario debe rescatar a la princesa Peach a través de niveles coloridos y desafiantes.",
+                    categoria: "ds",
+                    imagen: "newmario.png",
+                    stock: 6,
+                    rating: 4.9,
+                    envioGratis: true
+                },
+                {
+                    id: 28,
+                    nombre: "Super Mario Bros. 3",
+                    precio: 149.99,
+                    descripcion: "Versión para GBA del legendario Super Mario Bros. 3 con nuevos desafíos y mejoras gráficas.",
+                    categoria: "gba",
+                    imagen: "sm3.png",
+                    stock: 7,
+                    rating: 4.8,
+                    envioGratis: false
+                },
+                {
+                    id: 29,
+                    nombre: "Tetris Worlds",
+                    precio: 129.99,
+                    descripcion: "Versión renovada del clásico juego de puzzles con nuevos modos de juego y desafíos.",
+                    categoria: "gba",
+                    imagen: "tetris.png",
+                    stock: 9,
+                    rating: 4.5,
+                    envioGratis: false
+                },
+                {
+                    id: 30,
+                    nombre: "G-Force",
+                    precio: 159.99,
+                    descripcion: "Juego de acción basado en la película de Disney, donde controlas a un equipo de conejillos de indias espías.",
+                    categoria: "psp",
+                    imagen: "Gforce.png",
+                    stock: 5,
+                    rating: 4.3,
+                    envioGratis: false
+                },
+                {
+                    id: 31,
+                    nombre: "FIFA 15",
+                    precio: 179.99,
+                    descripcion: "Juego de fútbol con gráficos mejorados y nuevas mecánicas en el modo carrera.",
+                    categoria: "ps_vita",
+                    imagen: "fifa15.png",
+                    stock: 8,
+                    rating: 4.6,
+                    envioGratis: true
+                },
+                {
+                    id: 32,
+                    nombre: "The Walking Dead",
+                    precio: 199.99,
+                    descripcion: "Aventura gráfica basada en la serie de cómics, con decisiones que afectan la historia.",
+                    categoria: "ps_vita",
+                    imagen: "dead.png",
+                    stock: 6,
+                    rating: 4.8,
+                    envioGratis: true
+                }
+                
+            ];
+    
+            function mostrarItems(itemsAMostrar) {
+                const grid = document.getElementById('productGrid');
+                grid.innerHTML = '';
+                
+                itemsAMostrar.forEach(item => {
+                    const card = document.createElement('div');
+                    card.className = 'product-card';
+                    
+                    // Crear las estrellas basadas en el rating
+                    const stars = '★'.repeat(Math.floor(item.rating)) + 
+                                (item.rating % 1 ? '½' : '') +
+                                '☆'.repeat(5 - Math.ceil(item.rating));
+    
+                    card.innerHTML = `
+                        <img src="${item.imagen}" alt="${item.nombre}" class="product-image">
+                        <h3 class="product-title">${item.nombre}</h3>
+                        <div class="rating">${stars} ${item.rating}</div>
+                        <div class="product-price">$${item.precio.toFixed(2)}</div>
+                        <div class="product-description">${item.descripcion}</div>
+                        <div class="stock-status">
+                            ${item.stock > 0 ? `¡Solo quedan ${item.stock} unidades!` : 'Agotado'}
+                        </div>
+                        ${item.envioGratis ? '<div class="shipping-info">✓ Envío GRATIS</div>' : ''}
+                        <button class="buy-button" onclick="agregarAlCarrito(${item.id})">
+                            Agregar al carrito
+                        </button>
+                    `;
+                    grid.appendChild(card);
+                });
+            }
+    
+            function filtrarItems(categoria) {
+                let itemsFiltrados;
+                if (categoria === 'todos') {
+                    itemsFiltrados = venta;
+                } else {
+                    itemsFiltrados = venta.filter(item => item.categoria === categoria);
+                }
+                mostrarItems(itemsFiltrados);
+            }
+    
+            function agregarAlCarrito(id) {
+                const producto = venta.find(item => item.id === id);
+                alert(`Producto "${producto.nombre}" agregado al carrito`);
+                // Aquí puedes agregar la lógica real del carrito
+            }
+    
+            // Mostrar los items automáticamente al cargar la página
+            document.addEventListener('DOMContentLoaded', function() {
+                document.getElementById('categoryMenu').style.display = 'block';
+                document.getElementById('productGrid').style.display = 'grid';
+                mostrarItems(venta);
+            });
+                // Funciones del carrito para integrar en la página principal
+
+                // Obtener carrito del localStorage
+                function obtenerCarrito() {
+                return JSON.parse(localStorage.getItem('carritoCompras')) || [];
+                }
+
+                // Guardar carrito en localStorage
+                function guardarCarrito(carrito) {
+                localStorage.setItem('carritoCompras', JSON.stringify(carrito));
+                actualizarContadorCarrito();
+                }
+
+                // Actualizar contador del carrito
+                function actualizarContadorCarrito() {
+                const carrito = obtenerCarrito();
+                const contador = carrito.reduce((total, item) => total + item.cantidad, 0);
+                
+                // Actualizar el contador visual si existe el elemento
+                const contadorElement = document.getElementById('contadorCarrito');
+                if (contadorElement) {
+                    contadorElement.textContent = contador;
+                }
+                }
+
+                // Agregar producto al carrito
+                function agregarAlCarrito(id, nombre, precio, imagen) {
+                const carrito = obtenerCarrito();
+                
+                // Verificar si el producto ya existe en el carrito
+                const productoExistente = carrito.find(item => item.id === id);
+                
+                if (productoExistente) {
+                    // Si ya existe, aumentar la cantidad
+                    productoExistente.cantidad += 1;
+                    mostrarMensajeFlotante('Cantidad actualizada en el carrito');
+                } else {
+                    // Si no existe, agregar como nuevo
+                    carrito.push({
+                    id: id,
+                    nombre: nombre,
+                    precio: precio,
+                    imagen: imagen,
+                    cantidad: 1
+                    });
+                    mostrarMensajeFlotante('Producto agregado al carrito');
+                }
+                
+                guardarCarrito(carrito);
+                }
+
+                // Mostrar mensaje flotante
+                function mostrarMensajeFlotante(texto, duracion = 3000) {
+                // Crear elemento del mensaje si no existe
+                let mensaje = document.getElementById('mensajeFlotante');
+                
+                if (!mensaje) {
+                    mensaje = document.createElement('div');
+                    mensaje.id = 'mensajeFlotante';
+                    mensaje.style.position = 'fixed';
+                    mensaje.style.top = '80px';
+                    mensaje.style.right = '20px';
+                    mensaje.style.padding = '15px 20px';
+                    mensaje.style.backgroundColor = '#0047AB';
+                    mensaje.style.color = 'white';
+                    mensaje.style.borderRadius = '5px';
+                    mensaje.style.zIndex = '1000';
+                    mensaje.style.opacity = '0';
+                    mensaje.style.transform = 'translateY(-20px)';
+                    mensaje.style.transition = 'all 0.3s ease';
+                    document.body.appendChild(mensaje);
+                    }
+                    
+                    // Mostrar el mensaje
+                    mensaje.textContent = texto;
+                    setTimeout(() => {
+                        mensaje.style.opacity = '1';
+                        mensaje.style.transform = 'translateY(0)';
+                    }, 10);
+                    
+                    // Ocultar después de la duración
+                    setTimeout(() => {
+                        mensaje.style.opacity = '0';
+                        mensaje.style.transform = 'translateY(-20px)';
+                    }, duracion);
+                    }
+                    
+                    function irAlCarrito() {
+                        // Verificar si el usuario ha iniciado sesión
+                        const usuarioConectado = localStorage.getItem('usuarioConectado');
+                        
+                        if (usuarioConectado === 'true') {
+                            // Si ha iniciado sesión, ir al carrito
+                            window.location.href = 'file:///C:/Users/GAMER%20RYSEN/Desktop/proyecto/juegos/carrito.html';
+                        } else {
+                            // Si no ha iniciado sesión, mostrar el formulario de registro
+                            document.getElementById('registerOverlay').style.display = 'flex';
+                        }
+                    }
+                    // Función para cerrar sesión
+                    function cerrarSesion() {
+                        localStorage.setItem('usuarioConectado', 'false');
+                        mostrarMensajeFlotante('Has cerrado sesión correctamente');
+                    }
+
+                    // Agregar el botón de cerrar sesión cuando se cargue la página
+                    document.addEventListener('DOMContentLoaded', function() {
+                        // Código existente...
+                        
+                        // Crear botón de cerrar sesión
+                        const cerrarSesionBtn = document.createElement('div');
+                        cerrarSesionBtn.id = 'cerrarSesionBtn';
+                        cerrarSesionBtn.className = 'cerrar-sesion-btn';
+                        cerrarSesionBtn.innerHTML = '🚪 Cerrar sesión';
+                        cerrarSesionBtn.onclick = cerrarSesion;
+                        cerrarSesionBtn.style.position = 'fixed';
+                        cerrarSesionBtn.style.top = '25px';
+                        cerrarSesionBtn.style.right = '220px';
+                        cerrarSesionBtn.style.padding = '10px';
+                        cerrarSesionBtn.style.backgroundColor = '#121212';
+                        cerrarSesionBtn.style.border = '1px solid #0047AB';
+                        cerrarSesionBtn.style.borderRadius = '5px';
+                        cerrarSesionBtn.style.cursor = 'pointer';
+                        cerrarSesionBtn.style.zIndex = '100';
+                        cerrarSesionBtn.style.color = 'white';  
+                        cerrarSesionBtn.style.boxShadow = '0 0 5px #00BFFF';  
+                        document.body.appendChild(cerrarSesionBtn);
+                        
+                        // Verificar si hay usuario conectado para mostrar u ocultar el botón
+                        const usuarioConectado = localStorage.getItem('usuarioConectado');
+                        if (usuarioConectado !== 'true') {
+                            cerrarSesionBtn.style.display = 'none';
+                        }
+                    });
+
+                    // Función para cerrar el formulario de registro
+                    function cerrarRegistro() {
+                        document.getElementById('registerOverlay').style.display = 'none';
+                    }
+
+                    // Agregar al evento DOMContentLoaded
+                    document.addEventListener('DOMContentLoaded', function() {
+                        // Código existente...
+                        
+                        // Crear el icono del carrito...
+                        // ...
+
+                        // Control de pestañas registro/inicio sesión
+                        document.querySelectorAll('.tab').forEach(tab => {
+                            tab.addEventListener('click', function() {
+                                // Quitar clase activa de todas las pestañas
+                                document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+                                // Añadir clase activa a la pestaña clickeada
+                                this.classList.add('active');
+                                
+                                // Ocultar todos los contenidos de pestañas
+                                document.querySelectorAll('.tab-content').forEach(content => {
+                                    content.classList.remove('active');
+                                });
+                                
+                                // Mostrar el contenido de la pestaña correspondiente
+                                const contenidoTab = document.getElementById(this.dataset.tab + 'Tab');
+                                if (contenidoTab) {
+                                    contenidoTab.classList.add('active');
+                                }
+                            });
+                        });
+                        
+                        // Manejar envío del formulario de registro
+                        if (document.getElementById('userRegisterForm')) {
+                            document.getElementById('userRegisterForm').addEventListener('submit', function(e) {
+                                e.preventDefault();
+                                
+                                // Obtener valores del formulario
+                                const nombre = document.getElementById('userName').value;
+                                const email = document.getElementById('userEmail').value;
+                                const password = document.getElementById('userPassword').value;
+                                
+                                // Guardar información del usuario (en una aplicación real, deberías hacerlo de forma más segura)
+                                localStorage.setItem('nombreUsuario', nombre);
+                                localStorage.setItem('emailUsuario', email);
+                                localStorage.setItem('usuarioConectado', 'true');
+                                
+                                // Mostrar mensaje de éxito
+                                mostrarMensajeFlotante('¡Registro exitoso! Ahora puedes acceder al carrito', 3000);
+                                
+                                // Cerrar el formulario de registro
+                                cerrarRegistro();
+                                
+                                // Redirigir al carrito después de un breve retraso
+                                setTimeout(() => {
+                                    window.location.href = 'file:///C:/Users/GAMER%20RYSEN/Desktop/proyecto/juegos/carrito.html';
+                                }, 1500);
+                            });
+                        }
+                        
+                        // Manejar envío del formulario de inicio de sesión
+                        if (document.getElementById('userLoginForm')) {
+                            document.getElementById('userLoginForm').addEventListener('submit', function(e) {
+                                e.preventDefault();
+                                
+                                // En una aplicación real, validarías las credenciales con datos almacenados
+                                // Para esta demo, simplemente iniciamos sesión
+                                localStorage.setItem('usuarioConectado', 'true');
+                                
+                                // Mostrar mensaje de éxito
+                                mostrarMensajeFlotante('¡Inicio de sesión exitoso!', 2000);
+                                
+                                // Cerrar el formulario
+                                cerrarRegistro();
+                                
+                                // Redirigir al carrito
+                                setTimeout(() => {
+                                    window.location.href = 'file:///C:/Users/GAMER%20RYSEN/Desktop/proyecto/juegos/carrito.html';
+                                }, 1000);
+                            });
+                        }
+                        
+                        // Actualizar contador del carrito
+                        actualizarContadorCarrito();
+                    });
+
+                    // Inicializar cuando se carga la página
+                    document.addEventListener('DOMContentLoaded', function() {
+                    // Crear el icono del carrito si no existe
+                    if (!document.getElementById('carritoIcono')) {
+                        const carritoIcono = document.createElement('div');
+                        carritoIcono.id = 'carritoIcono';
+                        carritoIcono.className = 'carrito-icon';
+                        carritoIcono.innerHTML = '🛒 <span class="carrito-contador" id="contadorCarrito">0</span>';
+                        carritoIcono.onclick = irAlCarrito;
+                        carritoIcono.style.position = 'fixed';
+                        carritoIcono.style.top = '20px';
+                        carritoIcono.style.right = '140px';
+                        carritoIcono.style.display = 'flex';
+                        carritoIcono.style.alignItems = 'center';
+                        carritoIcono.style.padding = '10px';
+                        carritoIcono.style.backgroundColor = '#121212';
+                        carritoIcono.style.border = '1px solid #0047AB';
+                        carritoIcono.style.borderRadius = '5px';
+                        carritoIcono.style.cursor = 'pointer';
+                        carritoIcono.style.zIndex = '100';
+                        document.body.appendChild(carritoIcono);
+                        
+                        // Estilo para el contador
+                        const style = document.createElement('style');
+                        style.textContent = `
+                        .carrito-contador {
+                            background-color: #00BFFF;
+                            color: white;
+                            font-size: 12px;
+                            border-radius: 50%;
+                            padding: 5px 8px;
+                            margin-left: 5px;
+                        }
+                        
+                        .carrito-icon:hover {
+                            box-shadow: 0 0 15px #00BFFF;
+                            transition: all 0.3s ease;
+                        }
+                        `;
+                        document.head.appendChild(style);
+                    }
+                    
+                    // Actualizar contador
+                    actualizarContadorCarrito();
+                    });
+                    // Modificar la función que genera las cards de productos
+                    function mostrarItems(items_amostrar) {
+                        const grid = document.getElementById('productGrid');
+                        grid.innerHTML = '';
+                        
+                        items_amostrar.forEach(item => {
+                            const card = document.createElement('div');
+                            card.className = 'product-card';
+                            card.innerHTML = `
+                                <a href="${item.url}" style="text-decoration: none; color: inherit;">
+                                    <img src="${item.imagen}" alt="${item.nombre}" class="product-image">
+                                    <h3 class="product-title">${item.nombre}</h3>
+                                    <p class="product-description" style="color: #666; font-size: 0.9em; margin: 10px 0;">
+                                        ${item.descripcion || 'Sin descripción disponible'}
+                                    </p>
+                                </a>
+                                <div class="buy-button" onclick="agregarAlCarrito('${item.id}', '${item.nombre}', ${item.precio}, '${item.imagen}')">Añadir al carrito</div>
+                            `;
+                            grid.appendChild(card);
+                        });
+                    }
+        </script>
+        <div id="registerOverlay" class="register-overlay">
+            <div class="register-form">
+                <div class="form-tabs">
+                    <div class="tab active" data-tab="register">Crear Cuenta</div>
+                    <div class="tab" data-tab="login">Iniciar Sesión</div>
+                </div>
+                
+                <div id="registerTab" class="tab-content active">
+                    <h2>Crear Cuenta</h2>
+                    <form id="userRegisterForm">
+                        <div class="form-group">
+                            <label for="userName">Nombre:</label>
+                            <input type="text" id="userName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="userEmail">Correo:</label>
+                            <input type="email" id="userEmail" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="userPassword">Contraseña:</label>
+                            <input type="password" id="userPassword" required>
+                        </div>
+                        <div class="form-buttons">
+                            <button type="submit" class="glow-button">Registrarse</button>
+                            <button type="button" class="glow-button cancel-button" onclick="cerrarRegistro()">Cancelar</button>
+                        </div>
+                    </form>
+                </div>
+                
+                <div id="loginTab" class="tab-content">
+                    <h2>Iniciar Sesión</h2>
+                    <form id="userLoginForm">
+                        <div class="form-group">
+                            <label for="loginEmail">Correo:</label>
+                            <input type="email" id="loginEmail" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="loginPassword">Contraseña:</label>
+                            <input type="password" id="loginPassword" required>
+                        </div>
+                        <div class="form-buttons">
+                            <button type="submit" class="glow-button">Iniciar Sesión</button>
+                            <button type="button" class="glow-button cancel-button" onclick="cerrarRegistro()">Cancelar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+</body>
+</html>
